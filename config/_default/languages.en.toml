@@ -1,0 +1,41 @@
+disabled = false
+languageCode = "en"
+languageName = "English"
+weight = 1
+title = "GreyCipher-sec"
+
+[params]
+displayName = "EN"
+isoCode = "en"
+rtl = false
+dateFormat = "2 January 2006"
+
+[[params.author.links]]
+bluesky = "https://bsky.app/profile/greycipher.bsky.social"
+
+[[params.author.links]]
+email = "mailto:greycipher@tutanota.com"
+
+[[params.author.links]]
+github = "https://github.com/GreyCipher-sec"
+
+[[params.author.links]]
+linkedin = "https://www.linkedin.com/in/samuel-margiotta-08376726a"
+
+[[params.author.links]]
+mastodon = "https://mastodon.social/@greycipher"
+
+[[params.author.links]]
+pgpkey = "https://keys.openpgp.org/vks/v1/by-fingerprint/5E5A7AE077A6F84372EB371205BB196AFE4C92C5"
+
+[[params.author.links]]
+rss = "https://greycipher.github.io/index.xml"
+
+[[params.author.links]]
+x-twitter = "https://x.com/0xGreyCipher"
+
+["params.author"]
+name = "GreyCipher"
+email = "greycipher@tutanota.com"
+image = "pfp.png"
+headline = "If it exists, it leaves a trace."
