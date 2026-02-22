@@ -30,7 +30,7 @@ mastodon = "https://mastodon.social/@greycipher"
 pgpkey = "https://keys.openpgp.org/vks/v1/by-fingerprint/5E5A7AE077A6F84372EB371205BB196AFE4C92C5"
 
 [[params.author.links]]
-rss = "https://greycipher.github.io/index.xml"
+rss = "https://greycipher-sec.github.io/index.xml"
 
 [[params.author.links]]
 x-twitter = "https://x.com/0xGreyCipher"
