@@ -2,13 +2,14 @@ disabled = false
 languageCode = "en"
 languageName = "English"
 weight = 1
-title = "GreyCipher-sec"
+title = " "
 
 [params]
 displayName = "EN"
 isoCode = "en"
 rtl = false
 dateFormat = "2 January 2006"
+logo = "eye-logo-transparent.png"
 
 [[params.author.links]]
 bluesky = "https://bsky.app/profile/greycipher.bsky.social"
