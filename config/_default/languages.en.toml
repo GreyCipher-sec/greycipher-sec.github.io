@@ -9,7 +9,7 @@ displayName = "EN"
 isoCode = "en"
 rtl = false
 dateFormat = "2 January 2006"
-logo = "eye-logo-transparent.png"
+logo = "eye-logo-transparent.webp"
 
 [[params.author.links]]
 bluesky = "https://bsky.app/profile/greycipher.bsky.social"
@@ -38,5 +38,5 @@ x-twitter = "https://x.com/0xGreyCipher"
 ["params.author"]
 name = "GreyCipher"
 email = "greycipher@tutanota.com"
-image = "pfp.png"
+image = "pfp.webp"
 headline = "If it exists, it leaves a trace."
