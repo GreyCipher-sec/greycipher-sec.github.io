@@ -15,3 +15,15 @@ weight = 9_999
 
 [[footer]]
 none = "none"
+
+[[footer]]
+name = "Tags"
+pageRef = "/tags/"
+identifier = "gHAFZEKsLH"
+weight = 9_999
+
+[[footer]]
+name = "Categories"
+pageRef = "/categories/"
+identifier = "gwp7KrM8rn"
+weight = 9_999
