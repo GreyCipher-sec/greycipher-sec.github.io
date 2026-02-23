@@ -38,5 +38,5 @@ x-twitter = "https://x.com/0xGreyCipher"
 ["params.author"]
 name = "GreyCipher"
 email = "greycipher@tutanota.com"
-image = "pfp.webp"
+image = "pfp.png"
 headline = "If it exists, it leaves a trace."
