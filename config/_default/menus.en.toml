@@ -17,13 +17,13 @@ weight = 9_999
 none = "none"
 
 [[footer]]
-name = "Tags"
-pageRef = "/tags/"
-identifier = "gHAFZEKsLH"
-weight = 9_999
-
-[[footer]]
 name = "Categories"
 pageRef = "/categories/"
 identifier = "gwp7KrM8rn"
-weight = 9_999
+weight = 2
+
+[[footer]]
+name = "Series"
+pageRef = "/series/"
+identifier = "gApDl8ceTw"
+weight = 1

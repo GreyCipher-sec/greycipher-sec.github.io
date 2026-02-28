@@ -1,0 +1,41 @@
+@font-face {
+    font-family: 'JetBrains Mono';
+    src: url('/fonts/JetBrainsMono.ttf') format('ttf');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'JetBrains Mono';
+    src: url('/fonts/JetBrainsMono-Bold.ttf') format('ttf');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+html,
+body {
+    font-family: 'JetBrains Mono', monospace !important;
+}
+
+code,
+pre,
+kbd,
+samp {
+    font-family: 'JetBrains Mono', monospace !important;
+}
+
+html {
+    font-size: 13pt;
+}
+/* Increase content width */
+.max-w-prose {
+    max-width: 80rem !important;
+    /* default is smaller */
+}
+
+/* Or control main container width */
+.max-w-7xl {
+    max-width: 100rem !important;
+}

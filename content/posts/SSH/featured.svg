@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <radialGradient id="c07bg" cx="50%" cy="50%" r="55%">
+        <stop offset="0%" stop-color="#0a1840" stop-opacity="0.9"/>
+        <stop offset="100%" stop-color="#141028" stop-opacity="0"/>
+      </radialGradient>
+      <filter id="c07g"><feGaussianBlur stdDeviation="6"/></filter>
+    </defs>
+    <rect width="1200" height="675" fill="#141028"/>
+    <rect width="1200" height="675" fill="url(#c07bg)"/>
+    <!-- globe outline -->
+    <circle cx="600" cy="337" r="260" fill="none" stroke="#111828" stroke-width="1.5"/>
+    <!-- latitude lines -->
+    <ellipse cx="600" cy="337" rx="260" ry="60" fill="none" stroke="#141e38" stroke-width="1"/>
+    <ellipse cx="600" cy="337" rx="260" ry="130" fill="none" stroke="#141e38" stroke-width="1"/>
+    <ellipse cx="600" cy="337" rx="260" ry="195" fill="none" stroke="#141e38" stroke-width="1"/>
+    <!-- longitude lines -->
+    <ellipse cx="600" cy="337" rx="65" ry="260" fill="none" stroke="#141e38" stroke-width="1"/>
+    <ellipse cx="600" cy="337" rx="130" ry="260" fill="none" stroke="#141e38" stroke-width="1"/>
+    <ellipse cx="600" cy="337" rx="195" ry="260" fill="none" stroke="#141e38" stroke-width="1"/>
+    <!-- equator and prime meridian brighter -->
+    <line x1="340" y1="337" x2="860" y2="337" stroke="#222450" stroke-width="1.5"/>
+    <line x1="600" y1="77" x2="600" y2="597" stroke="#222450" stroke-width="1.5"/>
+    <!-- target location ping -->
+    <circle cx="700" cy="250" r="40" fill="none" stroke="#5f25b8" stroke-width="1" opacity="0.4"/>
+    <circle cx="700" cy="250" r="26" fill="none" stroke="#7c35e8" stroke-width="1" opacity="0.5"/>
+    <circle cx="700" cy="250" r="14" fill="none" stroke="#a040f8" stroke-width="1.5" opacity="0.7"/>
+    <!-- pin -->
+    <path d="M700 250 Q700 250 700 250 L700 200" stroke="#cc90ff" stroke-width="1.5"/>
+    <circle cx="700" cy="244" r="6" fill="#141028" stroke="#cc90ff" stroke-width="1.5"/>
+    <circle cx="700" cy="244" r="6" fill="#cc90ff" opacity="0.15" filter="url(#c07g)"/>
+    <circle cx="700" cy="244" r="2.5" fill="#cc90ff"/>
+    <!-- signal lines from pin -->
+    <line x1="700" y1="244" x2="500" y2="100" stroke="#521080" stroke-width="1" stroke-dasharray="4,6" opacity="0.5"/>
+    <line x1="700" y1="244" x2="900" y2="140" stroke="#521080" stroke-width="1" stroke-dasharray="4,6" opacity="0.4"/>
+    <!-- satellite dots -->
+    <circle cx="500" cy="100" r="6" fill="#141028" stroke="#5f25b8" stroke-width="1.5"/>
+    <circle cx="500" cy="100" r="2.5" fill="#7c35e8"/>
+    <circle cx="900" cy="140" r="6" fill="#141028" stroke="#5f25b8" stroke-width="1.5"/>
+    <circle cx="900" cy="140" r="2.5" fill="#7c35e8"/>
+    <!-- corner marks -->
+    <line x1="48" y1="48" x2="96" y2="48" stroke="#3d2d6e" stroke-width="1"/><line x1="48" y1="48" x2="48" y2="96" stroke="#3d2d6e" stroke-width="1"/>
+    <line x1="1152" y1="48" x2="1104" y2="48" stroke="#3d2d6e" stroke-width="1"/><line x1="1152" y1="48" x2="1152" y2="96" stroke="#3d2d6e" stroke-width="1"/>
+    <line x1="48" y1="627" x2="96" y2="627" stroke="#3d2d6e" stroke-width="1"/><line x1="48" y1="627" x2="48" y2="579" stroke="#3d2d6e" stroke-width="1"/>
+    <line x1="1152" y1="627" x2="1104" y2="627" stroke="#3d2d6e" stroke-width="1"/><line x1="1152" y1="627" x2="1152" y2="579" stroke="#3d2d6e" stroke-width="1"/>
+  </svg>
