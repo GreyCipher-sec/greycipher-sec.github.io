@@ -122,8 +122,22 @@ Filenames with spaces need to be quoted or escaped. Either wrap the whole name i
 
 **Solution**
 
-Using the username `bandit3` and the password 
+Use the username `bandit3` and the password from the previous level to connect to the server:
 
 ```plaintext
+[greycipher@remnant ~]$ ssh bandit3@bandit.labs.overthewire.org -p 2220
 
+bandit3@bandit:~$ ls
+inhere
+
+bandit3@bandit:~$ cd inhere
+
+bandit4@bandit:~/inhere$ ls -a
+.  ..  ...Hiding-From-You
+
+bandit3@bandit:~/inhere$ cat ...Hiding-From-You
+[REDACTED]
 ```
+
+Hidden files on Linux start with a dot. `ls` skips them by default,
+use `ls -a` to show all files including hidden ones.
