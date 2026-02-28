@@ -126,7 +126,11 @@ Use the username `bandit3` and the password from the previous level to connect t
 
 ```plaintext
 [greycipher@remnant ~]$ ssh bandit3@bandit.labs.overthewire.org -p 2220
+```
 
+Once connected start looking around for the hidden files using the commands we already know.
+
+```plaintext
 bandit3@bandit:~$ ls
 inhere
 
@@ -139,5 +143,51 @@ bandit3@bandit:~/inhere$ cat ...Hiding-From-You
 [REDACTED]
 ```
 
+**Notes**
+
 Hidden files on Linux start with a dot. `ls` skips them by default,
 use `ls -a` to show all files including hidden ones.
+
+---
+
+## Level 4 -> 5
+
+**Level Goal**
+
+> The password for the next level is stored in the only human-readable file in the inhere directory. Tip: if your terminal is messed up, try the “reset” command.
+
+**Solution**
+
+With the username `bandit4` and the acquired password connect to the server:
+```plaintext
+[greycipher@remnant ~]$ ssh bandit4@bandit.labs.overthewire.org -p 2220
+```
+
+Once inside we can see there are different files in the folders and checking every file by hand can be very slow, but knowing that the file we're looking for is the only one which is also human-readable we can use the `file` command to check the type of data contained in a file.
+```plaintext
+bandit4@bandit:~$ cd inhere/
+
+bandit4@bandit:~/inhere$ ls
+-file00  -file01  -file02  -file03  -file04  -file05  -file06  -file07  -file08  -file09
+
+bandit4@bandit:~/inhere$ file ./*
+./-file00: data
+./-file01: OpenPGP Public Key
+./-file02: OpenPGP Public Key
+./-file03: data
+./-file04: data
+./-file05: data
+./-file06: data
+./-file07: ASCII text
+./-file08: data
+./-file09: data
+
+bandit4@bandit:~/inhere$ cat ./-file07
+[REDACTED]
+```
+
+**Notes**
+
+`file` identifies the type of data in a file without opening it.
+On a directory of unknowns, `file ./*` runs it against everything
+at once.
