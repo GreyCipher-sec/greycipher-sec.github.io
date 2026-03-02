@@ -3,6 +3,7 @@ title: "SSH - A Practical Introduction"
 date: 2026-02-28T15:58:26+01:00
 lastmod: 2026-02-28T15:58:26+01:00
 description: "A practical guide to SSH covering basic connections, key authentication, the config file, and common troubleshooting for Linux users."
+summary: "A practical guide to SSH covering basic connections, key authentication, the config file, and common troubleshooting for Linux users."
 categories: ["Linux", "Tooling"]
 series: [] # If you write several articles on the same subject
 showSummary: true
@@ -16,7 +17,7 @@ draft: false
 
 If you are working through any wargame, CTF, or home lab, SSH is the
 first tool you need to be comfortable with. This post covers everything
-from basic connections to config aliases — the things you will actually
+from basic connections to config aliases, the things you will actually
 use.
 
 ---
@@ -28,7 +29,7 @@ over a network. It encrypts everything in transit, which means your
 commands and any data you send cannot be read by anyone intercepting
 the connection.
 
-When you connect to a remote server — a VPS, a lab machine, a
+When you connect to a remote server, a VPS, a lab machine, a
 wargame server — SSH is almost always how you do it.
 
 ---
@@ -60,7 +61,7 @@ Are you sure you want to continue connecting (yes/no/[fingerprint])?
 
 This is SSH asking you to confirm you trust the server. Type `yes` and
 the server's fingerprint gets saved to `~/.ssh/known_hosts`. Next time
-you connect, SSH checks the fingerprint automatically — if it changed,
+you connect, SSH checks the fingerprint automatically, if it changed,
 SSH will warn you, which could indicate something is wrong.
 
 > Never blindly accept fingerprints on machines you don't control in
@@ -72,11 +73,11 @@ SSH will warn you, which could indicate something is wrong.
 
 SSH supports two ways to authenticate:
 
-**Password** — you type a password when connecting. Simple but weaker.
+**Password**: you type a password when connecting. Simple but weaker.
 The server has to store password hashes and brute force is possible if
 the password is weak.
 
-**Key-based** — you generate a key pair (public + private). The public
+**Key-based**: you generate a key pair (public + private). The public
 key goes on the server, the private key stays on your machine. No
 password is ever sent over the network. This is the standard for
 anything serious.
@@ -87,8 +88,8 @@ ssh-keygen -t ed25519 -C "your comment here"
 ```
 
 This creates two files in `~/.ssh/`:
-- `id_ed25519` — your private key, never share this
-- `id_ed25519.pub` — your public key, this goes on servers
+- `id_ed25519`: your private key, never share this
+- `id_ed25519.pub`: your public key, this goes on servers
 
 Copy your public key to a server:
 ```plaintext
@@ -191,5 +192,5 @@ ssh-keygen -R hostname
 
 If you are working through OverTheWire Bandit, you now have everything
 you need to get started. SSH is also the foundation for tunneling,
-proxying, and remote port forwarding — topics worth exploring once
+proxying, and remote port forwarding, topics worth exploring once
 the basics are solid.

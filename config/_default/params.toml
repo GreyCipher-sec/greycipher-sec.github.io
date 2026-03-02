@@ -73,14 +73,14 @@ showZenMode = false
 heroStyle = "background"
 
 [list]
-showHero = false
+showHero = true
 layoutBackgroundBlur = true
 layoutBackgroundHeaderSpace = true
 showBreadcrumbs = false
-showSummary = false
+showSummary = true
 showViews = false
 showLikes = false
-showTableOfContents = false
+showTableOfContents = " "
 showCards = false
 orderByWeight = false
 groupByYear = true
