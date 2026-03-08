@@ -61,7 +61,7 @@ These are the two most basic commands you will use throughout this series.
 
 **Level Goal**
 
-> The password for the next level is stored in a file called **-** located in the home directory
+> The password for the next level is stored in a file called **-** located in the home directory.
 
 **Solution**
 
@@ -91,7 +91,7 @@ Files starting with `-` are treated as flags. Use `./` to reference them as a pa
 
 **Level Goal**
 
-> The password for the next level is stored in a file called *--spaces in this filename--* located in the home directory
+> The password for the next level is stored in a file called *--spaces in this filename--* located in the home directory.
 
 **Solution**
 
@@ -111,7 +111,7 @@ bandit2@bandit:~$ cat ./--spaces\ in\ this\ filename--
 
 **Notes**
 
-Filenames with spaces need to be quoted or escaped. Either wrap the whole name in quotes or use a backslash before each space: `cat spaces\ in\ this\ filename`
+Filenames with spaces need to be quoted or escaped. Either wrap the whole name in quotes or use a backslash before each space: `cat spaces\ in\ this\ filename`.
 
 ---
 
@@ -190,5 +190,4 @@ bandit4@bandit:~/inhere$ cat ./-file07
 **Notes**
 
 `file` identifies the type of data in a file without opening it.
-On a directory of unknowns, `file ./*` runs it against everything
-at once.
+On a directory of unknowns, `file ./*` runs it against everything at once.

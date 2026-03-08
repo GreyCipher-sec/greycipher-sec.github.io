@@ -6,6 +6,7 @@ description: "A short summary for SEO and Blowfish overview"
 summary: ""
 categories: []
 series: [] # If you write several articles on the same subject
+seriesOrder:
 showSummary: true
 showTableOfContents: true
 showTaxonomies: true
