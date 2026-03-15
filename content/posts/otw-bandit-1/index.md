@@ -1,8 +1,8 @@
 ---
-title: "Bandit | Levels 0-4 | Reading Files"
+title: "Bandit | Levels 0-5 | Reading Files"
 date: 2026-02-28T10:12:15+01:00
 lastmod: 2026-02-28T10:12:15+01:00
-description: "A beginner-friendly walkthrough of Levels 0–4 in the Bandit wargame from OverTheWire. Learn essential Linux command-line skills, SSH basics, file navigation, and how to handle hidden and oddly named files — all while building your cybersecurity foundation through hands-on practice."
+description: "A beginner-friendly walkthrough of Levels 0–5 in the Bandit wargame from OverTheWire. Learn essential Linux command-line skills, SSH basics, file navigation, and how to handle hidden and oddly named files — all while building your cybersecurity foundation through hands-on practice."
 summary: "A beginner-friendly walkthrough of Levels 0–4 in the Bandit wargame from OverTheWire. Learn essential Linux command-line skills, SSH basics, file navigation, and how to handle hidden and oddly named files — all while building your cybersecurity foundation through hands-on practice."
 categories: ["WarGames", "OverTheWire", "Linux"]
 series: ["OverTheWire - Bandit"] # If you write several articles on the same subject
