@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <radialGradient id="c01bg" cx="50%" cy="50%" r="55%">
+        <stop offset="0%" stop-color="#3a1880" stop-opacity="0.7"/>
+        <stop offset="100%" stop-color="#141028" stop-opacity="0"/>
+      </radialGradient>
+      <filter id="c01g"><feGaussianBlur stdDeviation="8"/></filter>
+      <filter id="c01gs"><feGaussianBlur stdDeviation="3"/></filter>
+    </defs>
+    <rect width="1200" height="675" fill="#141028"/>
+    <ellipse cx="600" cy="337" rx="520" ry="300" fill="url(#c01bg)"/>
+    <!-- lock body -->
+    <rect x="460" y="280" width="280" height="240" rx="16" fill="#141028" stroke="#3d2d6e" stroke-width="2"/>
+    <rect x="460" y="280" width="280" height="240" rx="16" fill="#5f25b8" opacity="0.08"/>
+    <!-- shackle -->
+    <path d="M520 280 L520 210 Q520 160 600 160 Q680 160 680 210 L680 280" fill="none" stroke="#3d2d6e" stroke-width="18" stroke-linecap="round"/>
+    <path d="M520 280 L520 210 Q520 160 600 160 Q680 160 680 210 L680 280" fill="none" stroke="#1a1530" stroke-width="14" stroke-linecap="round"/>
+    <!-- shackle gap — unlocked -->
+    <path d="M520 280 L520 230 Q520 160 600 160 Q680 160 680 210 L680 280" fill="none" stroke="#521080" stroke-width="14" stroke-linecap="round"/>
+    <line x1="520" y1="260" x2="520" y2="310" stroke="#141028" stroke-width="16"/>
+    <!-- keyhole -->
+    <circle cx="600" cy="380" r="28" fill="#141028" stroke="#5f25b8" stroke-width="1.5"/>
+    <circle cx="600" cy="380" r="28" fill="#a040f8" opacity="0.08" filter="url(#c01g)"/>
+    <path d="M600 380 L588 420 L612 420 Z" fill="#141028"/>
+    <circle cx="600" cy="372" r="10" fill="#141028"/>
+    <circle cx="600" cy="372" r="6" fill="#8f4af5" opacity="0.8"/>
+    <!-- tumblers inside lock face -->
+    <rect x="490" y="300" width="24" height="60" rx="4" fill="#161230" stroke="#521080" stroke-width="1"/>
+    <rect x="490" y="320" width="24" height="16" rx="2" fill="#5f25b8" opacity="0.6"/>
+    <rect x="524" y="300" width="24" height="60" rx="4" fill="#161230" stroke="#521080" stroke-width="1"/>
+    <rect x="524" y="308" width="24" height="16" rx="2" fill="#7c35e8" opacity="0.5"/>
+    <rect x="652" y="300" width="24" height="60" rx="4" fill="#161230" stroke="#521080" stroke-width="1"/>
+    <rect x="652" y="316" width="24" height="16" rx="2" fill="#5f25b8" opacity="0.6"/>
+    <rect x="686" y="300" width="24" height="60" rx="4" fill="#161230" stroke="#521080" stroke-width="1"/>
+    <rect x="686" y="312" width="24" height="16" rx="2" fill="#8f4af5" opacity="0.4"/>
+    <!-- glow on keyhole -->
+    <circle cx="600" cy="380" r="28" fill="none" stroke="#a040f8" stroke-width="1" filter="url(#c01g)" opacity="0.6"/>
+    <!-- corner marks -->
+    <line x1="48" y1="48" x2="96" y2="48" stroke="#3d2d6e" stroke-width="1"/><line x1="48" y1="48" x2="48" y2="96" stroke="#3d2d6e" stroke-width="1"/>
+    <line x1="1152" y1="48" x2="1104" y2="48" stroke="#3d2d6e" stroke-width="1"/><line x1="1152" y1="48" x2="1152" y2="96" stroke="#3d2d6e" stroke-width="1"/>
+    <line x1="48" y1="627" x2="96" y2="627" stroke="#3d2d6e" stroke-width="1"/><line x1="48" y1="627" x2="48" y2="579" stroke="#3d2d6e" stroke-width="1"/>
+    <line x1="1152" y1="627" x2="1104" y2="627" stroke="#3d2d6e" stroke-width="1"/><line x1="1152" y1="627" x2="1152" y2="579" stroke="#3d2d6e" stroke-width="1"/>
+  </svg>
