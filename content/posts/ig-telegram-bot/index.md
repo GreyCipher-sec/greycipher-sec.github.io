@@ -1,9 +1,9 @@
 ---
-title: "Building an Instagram to Telegram Bot"
+title: "Instabridge — Building an Instagram to Telegram Bot"
 date: 2026-03-01T17:37:00+01:00
 lastmod: 2026-03-01T17:37:00+01:00
-description: "A practical writeup on building a Telegram bot that automatically downloads and re-uploads Instagram media to a group chat. Covering the stack, the problems, and what actually broke."
-summary: "A practical writeup on building a Telegram bot that automatically downloads and re-uploads Instagram media to a group chat. Covering the stack, the problems, and what actually broke."
+description: "A practical writeup on building Instabridge, a Telegram bot that automatically downloads and re-uploads Instagram media to a group chat. Covering the stack, setup, self-hosting, and what actually broke."
+summary: "A practical writeup on building Instabridge, a Telegram bot that automatically downloads and re-uploads Instagram media to a group chat. Covering the stack, setup, self-hosting, and what actually broke."
 categories: ["Projects", "Tooling"]
 series: [] # If you write several articles on the same subject
 showSummary: true
@@ -54,11 +54,177 @@ Everything else in the code handles the edge cases around those five steps.
 ```plaintext
 tg-instagram-bot/
 ├── main.py
+├── Dockerfile
 ├── requirements.txt
 ├── .env.example
 ├── .env
-└── .gitignore
+├── .gitignore
+├── LICENSE
+└── README.md
 ```
+
+---
+
+## Setup
+
+### 1. Create a Telegram Bot
+
+1. Message [@BotFather](https://t.me/BotFather) on Telegram
+2. Send `/newbot` and follow the prompts
+3. Copy the **bot token** you receive
+
+### 2. Disable Privacy Mode
+
+In BotFather send `/setprivacy` → select your bot → **Disable**.
+By default Telegram bots in groups only receive messages that start
+with `/`. Disabling privacy mode lets the bot read all messages so
+it can detect Instagram URLs anywhere in the chat.
+
+### 3. Install Dependencies
+
+```plaintext
+pip install -r requirements.txt
+```
+
+### 4. Configure Secrets
+
+```plaintext
+cp .env.example .env
+```
+
+Edit `.env` and fill in your values:
+
+```plaintext
+TELEGRAM_BOT_TOKEN=your_token_here
+INSTAGRAM_COOKIES_FILE=/path/to/cookies.txt
+ALLOWED_CHAT_IDS=-1001234567890
+```
+
+### 5. Run
+
+```plaintext
+python main.py
+```
+
+---
+
+## Self-Hosting
+
+To run the bot persistently on a server:
+
+```plaintext
+sudo apt update && sudo apt install python3 python3-pip -y
+
+git clone https://github.com/GreyCipher-sec/tg-instagram-bot.git
+cd tg-instagram-bot
+
+pip3 install -r requirements.txt
+
+cp .env.example .env
+nano .env
+```
+
+Create the systemd service:
+
+```plaintext
+sudo nano /etc/systemd/system/instabot.service
+```
+
+```ini
+[Unit]
+Description=Instagram Telegram Bot
+After=network.target
+
+[Service]
+WorkingDirectory=/home/user/tg-instagram-bot
+ExecStart=/home/user/tg-instagram-bot/.venv/bin/python main.py
+EnvironmentFile=/home/user/tg-instagram-bot/.env
+Restart=always
+User=user
+
+[Install]
+WantedBy=multi-user.target
+```
+
+> `ExecStart` must point to the virtualenv's Python binary, not the
+> system one. Using the system Python means your installed
+> dependencies are not visible to the service.
+
+Enable and start it:
+
+```plaintext
+sudo systemctl enable instabot
+sudo systemctl start instabot
+sudo systemctl status instabot
+```
+
+Monitor live logs:
+
+```plaintext
+journalctl -u instabot -f
+```
+
+---
+
+## Docker Deploy
+
+The repo includes a Dockerfile as an alternative to the systemd
+setup. It runs the bot as a non-root user (`botuser`) inside a
+`python:3.12-slim` container.
+
+Build the image:
+
+```plaintext
+docker build -t instabot .
+```
+
+Run it with your `.env` file passed in:
+
+```plaintext
+docker run -d --name instabot --env-file .env instabot
+```
+
+The `-d` flag runs the container in the background. To check it is
+running and watch live logs:
+
+```plaintext
+docker ps
+docker logs -f instabot
+```
+
+To stop and remove it:
+
+```plaintext
+docker stop instabot && docker rm instabot
+```
+
+> Make sure your `.env` file is filled in before running the
+> container — the bot will fail to start without a valid
+> `TELEGRAM_BOT_TOKEN`.
+
+Docker is the cleaner option if you already have it on your server
+and want to avoid managing a virtualenv and systemd unit manually.
+Both approaches work — pick whichever fits your setup.
+
+---
+
+## Instagram Cookies (Private Posts & Rate Limiting)
+
+By default the bot only downloads public posts. For private posts
+from accounts your Instagram account follows, or to reduce the chance
+of rate limiting, provide a cookies file:
+
+1. Install the **"Get cookies.txt LOCALLY"** browser extension
+2. Log in to Instagram in your browser
+3. Export cookies to a file
+4. Set the path in `.env`:
+
+```plaintext
+INSTAGRAM_COOKIES_FILE=/path/to/instagram_cookies.txt
+```
+
+> The authenticated account must follow the private profile for
+> private post downloads to work.
 
 ---
 
@@ -113,28 +279,6 @@ TELEGRAM_BOT_TOKEN=your_token_here
 INSTAGRAM_COOKIES_FILE=/path/to/cookies.txt
 ALLOWED_CHAT_IDS=-1001234567890
 ```
-
-### Running as a Service
-
-The bot runs under systemd on my home server:
-
-```ini
-[Unit]
-Description=Instagram Telegram Bot
-After=network.target
-
-[Service]
-WorkingDirectory=/home/user/services/tg-instagram-bot
-ExecStart=/home/user/services/tg-instagram-bot/.venv/bin/python main.py
-EnvironmentFile=/home/user/services/tg-instagram-bot/.env
-Restart=always
-User=user
-
-[Install]
-WantedBy=multi-user.target
-```
-
-Note the `ExecStart` points to the venv's Python binary, not the system one. Using the system Python means your dependencies aren't available.
 
 ---
 
