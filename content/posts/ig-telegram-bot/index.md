@@ -1,5 +1,5 @@
 ---
-title: "Instabridge — Building an Instagram to Telegram Bot"
+title: "Instabridge - Building an Instagram to Telegram Bot"
 date: 2026-03-01T17:37:00+01:00
 lastmod: 2026-03-01T17:37:00+01:00
 description: "A practical writeup on building Instabridge, a Telegram bot that automatically downloads and re-uploads Instagram media to a group chat. Covering the stack, setup, self-hosting, and what actually broke."
@@ -199,12 +199,12 @@ docker stop instabot && docker rm instabot
 ```
 
 > Make sure your `.env` file is filled in before running the
-> container — the bot will fail to start without a valid
+> container, the bot will fail to start without a valid
 > `TELEGRAM_BOT_TOKEN`.
 
 Docker is the cleaner option if you already have it on your server
 and want to avoid managing a virtualenv and systemd unit manually.
-Both approaches work — pick whichever fits your setup.
+Both approaches work, pick whichever fits your setup.
 
 ---
 
