@@ -51,7 +51,7 @@ Everything else in the code handles the edge cases around those five steps.
 
 ## Project Structure
 
-```plaintext
+```
 tg-instagram-bot/
 ├── main.py
 ├── Dockerfile
@@ -82,19 +82,21 @@ it can detect Instagram URLs anywhere in the chat.
 
 ### 3. Install Dependencies
 
-```plaintext
+```
+python3 -m venv .venv
+./.venv/bin/activate
 pip install -r requirements.txt
 ```
 
 ### 4. Configure Secrets
 
-```plaintext
+```
 cp .env.example .env
 ```
 
 Edit `.env` and fill in your values:
 
-```plaintext
+```
 TELEGRAM_BOT_TOKEN=your_token_here
 INSTAGRAM_COOKIES_FILE=/path/to/cookies.txt
 ALLOWED_CHAT_IDS=-1001234567890
@@ -102,7 +104,7 @@ ALLOWED_CHAT_IDS=-1001234567890
 
 ### 5. Run
 
-```plaintext
+```
 python main.py
 ```
 
@@ -112,12 +114,14 @@ python main.py
 
 To run the bot persistently on a server:
 
-```plaintext
+```
 sudo apt update && sudo apt install python3 python3-pip -y
 
 git clone https://github.com/GreyCipher-sec/tg-instagram-bot.git
 cd tg-instagram-bot
 
+python3 -m venv .venv
+./.venv/bin/activate
 pip3 install -r requirements.txt
 
 cp .env.example .env
@@ -126,7 +130,7 @@ nano .env
 
 Create the systemd service:
 
-```plaintext
+```
 sudo nano /etc/systemd/system/instabot.service
 ```
 
@@ -152,7 +156,7 @@ WantedBy=multi-user.target
 
 Enable and start it:
 
-```plaintext
+```
 sudo systemctl enable instabot
 sudo systemctl start instabot
 sudo systemctl status instabot
@@ -160,7 +164,7 @@ sudo systemctl status instabot
 
 Monitor live logs:
 
-```plaintext
+```
 journalctl -u instabot -f
 ```
 
@@ -174,27 +178,27 @@ setup. It runs the bot as a non-root user (`botuser`) inside a
 
 Build the image:
 
-```plaintext
+```
 docker build -t instabot .
 ```
 
 Run it with your `.env` file passed in:
 
-```plaintext
+```
 docker run -d --name instabot --env-file .env instabot
 ```
 
 The `-d` flag runs the container in the background. To check it is
 running and watch live logs:
 
-```plaintext
+```
 docker ps
 docker logs -f instabot
 ```
 
 To stop and remove it:
 
-```plaintext
+```
 docker stop instabot && docker rm instabot
 ```
 
@@ -219,7 +223,7 @@ of rate limiting, provide a cookies file:
 3. Export cookies to a file
 4. Set the path in `.env`:
 
-```plaintext
+```
 INSTAGRAM_COOKIES_FILE=/path/to/instagram_cookies.txt
 ```
 
@@ -232,7 +236,7 @@ INSTAGRAM_COOKIES_FILE=/path/to/instagram_cookies.txt
 
 ### Detecting Instagram URLs
 
-```python
+```
 INSTAGRAM_URL_PATTERN = re.compile(
     r"https?://(?:www\.)?instagram\.com/"
     r"(?:p|reel|reels|tv|stories)/[A-Za-z0-9_\-]+/?(?:\?[^\s]*)?"
@@ -254,7 +258,7 @@ ExtractorError: There is no video in this post
 
 That error gets caught and routed to `instaloader` instead:
 
-```python
+```
 def download_media(url: str, output_dir: str) -> list[Path]:
     try:
         with yt_dlp.YoutubeDL(build_ydl_options(output_dir)) as ydl:
@@ -274,7 +278,7 @@ def download_media(url: str, output_dir: str) -> list[Path]:
 
 Credentials live in a `.env` file, loaded at runtime by `python-dotenv`:
 
-```plaintext
+```
 TELEGRAM_BOT_TOKEN=your_token_here
 INSTAGRAM_COOKIES_FILE=/path/to/cookies.txt
 ALLOWED_CHAT_IDS=-1001234567890
@@ -294,7 +298,7 @@ RuntimeError: There is no current event loop in thread 'MainThread'.
 
 Fix:
 
-```python
+```
 asyncio.set_event_loop(asyncio.new_event_loop())
 ```
 

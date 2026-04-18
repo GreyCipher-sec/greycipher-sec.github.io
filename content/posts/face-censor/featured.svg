@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="b1bg" cx="50%" cy="60%" r="60%">
+      <stop offset="0%" stop-color="#1e0a45" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#141028" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="b1hat" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#7c35e8"/>
+      <stop offset="55%" stop-color="#5f25b8"/>
+      <stop offset="100%" stop-color="#3e1268"/>
+    </linearGradient>
+    <filter id="eg" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="4" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="1200" height="675" fill="#141028"/>
+  <ellipse cx="600" cy="420" rx="480" ry="300" fill="url(#b1bg)"/>
+  <!-- hat crown -->
+  <rect x="460" y="178" width="280" height="118" rx="12" fill="url(#b1hat)"/>
+  <!-- crown highlight -->
+  <rect x="460" y="178" width="280" height="30" rx="12" fill="#a040f8" opacity="0.06"/>
+  <!-- band -->
+  <rect x="452" y="283" width="296" height="20" rx="3" fill="#141028"/>
+  <line x1="452" y1="286" x2="748" y2="286" stroke="#5f25b8" stroke-width="1" opacity="0.5"/>
+  <!-- brim -->
+  <rect x="396" y="299" width="408" height="30" rx="7" fill="#3e1268"/>
+  <rect x="396" y="299" width="408" height="8" rx="4" fill="#8f4af5" opacity="0.1"/>
+  <!-- mask -->
+  <rect x="472" y="326" width="256" height="78" rx="10" fill="#141028"/>
+  <rect x="472" y="326" width="256" height="78" rx="10" fill="#2a2448" opacity="0.6"/>
+  <!-- left eye -->
+  <ellipse cx="534" cy="362" rx="30" ry="17" fill="#8f4af5" filter="url(#eg)"/>
+  <ellipse cx="534" cy="362" rx="30" ry="17" fill="#a040f8" opacity="0.3"/>
+  <ellipse cx="534" cy="362" rx="17" ry="11" fill="#141028"/>
+  <ellipse cx="534" cy="362" rx="7" ry="7" fill="#7c35e8"/>
+  <circle cx="538" cy="358" r="2" fill="#cc90ff" opacity="0.5"/>
+  <!-- right eye -->
+  <ellipse cx="666" cy="362" rx="30" ry="17" fill="#8f4af5" filter="url(#eg)"/>
+  <ellipse cx="666" cy="362" rx="30" ry="17" fill="#a040f8" opacity="0.3"/>
+  <ellipse cx="666" cy="362" rx="17" ry="11" fill="#141028"/>
+  <ellipse cx="666" cy="362" rx="7" ry="7" fill="#7c35e8"/>
+  <circle cx="670" cy="358" r="2" fill="#cc90ff" opacity="0.5"/>
+  <!-- corner marks -->
+  <line x1="48" y1="48" x2="96" y2="48" stroke="#3d2d6e" stroke-width="1"/><line x1="48" y1="48" x2="48" y2="96" stroke="#3d2d6e" stroke-width="1"/>
+  <line x1="1152" y1="48" x2="1104" y2="48" stroke="#3d2d6e" stroke-width="1"/><line x1="1152" y1="48" x2="1152" y2="96" stroke="#3d2d6e" stroke-width="1"/>
+  <line x1="48" y1="627" x2="96" y2="627" stroke="#3d2d6e" stroke-width="1"/><line x1="48" y1="627" x2="48" y2="579" stroke="#3d2d6e" stroke-width="1"/>
+  <line x1="1152" y1="627" x2="1104" y2="627" stroke="#3d2d6e" stroke-width="1"/><line x1="1152" y1="627" x2="1152" y2="579" stroke="#3d2d6e" stroke-width="1"/>
+</svg>
