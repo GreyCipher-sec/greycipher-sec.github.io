@@ -24,7 +24,7 @@ jobs:
       - name: Build Zola
         uses: getzola/github-pages@v1
         with:
-          zola_version: 0.22.0
+          zola_version: v0.22.0
 
   deploy:
     environment:
