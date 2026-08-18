@@ -21,11 +21,18 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Build Zola
-        uses: getzola/github-pages@v1
+      - name: Install Zola
+        run: |
+          sudo snap install zola --edge
+
+      - name: Build Site
+        run: |
+          zola --config zola.toml build
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          zola_version: v0.22.0
-          build_flags: "-c zola.toml"
+          path: ./public
 
   deploy:
     environment:
