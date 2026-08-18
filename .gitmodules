@@ -1,0 +1,3 @@
+[submodule "themes/NOIR"]
+	path = themes/NOIR
+	url = https://github.com/GreyCipher-sec/NOIR.git

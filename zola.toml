@@ -1,0 +1,38 @@
+base_url = "https://www.greycipher.dev"
+title = "GreyCipher"
+description = "Independent research archive. Systems, security, hardware."
+default_language = "en"
+theme = "NOIR"
+
+generate_feeds = true
+feed_filenames = ["rss.xml"]
+
+build_search_index = false
+compile_sass = false
+
+[markdown]
+render_emoji = false
+
+[[taxonomies]]
+name = "tags"
+feed = true
+paginate_by = 10
+
+[[taxonomies]]
+name = "categories"
+feed = true
+paginate_by = 10
+
+# Taxonomy used as an internal mechanism to link articles belonging
+# to the same collection (series/project/dossier), regardless of the
+# section they live in (posts, ctf, wargames, notes...). render=false:
+# no public automatic pages are generated — the actual indexable
+# collection page is the one in content/collections/<id>.md.
+# Used for cross-section queries via get_taxonomy_term() in templates.
+[[taxonomies]]
+name = "collection"
+render = false
+
+[extra]
+author = "GreyCipher"
+social_image = "images/social-preview.png"
