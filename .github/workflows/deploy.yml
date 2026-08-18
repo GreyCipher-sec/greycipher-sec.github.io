@@ -20,22 +20,18 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          submodules: 'recursive'
 
       - name: Install Zola
         run: |
           sudo snap install zola --edge
 
-      - name: Fix Theme Structure for CI
-        run: |
-          rm -rf themes/NOIR
-          mkdir -p themes
-          git clone https://github.com/GreyCipher-sec/NOIR.git themes/NOIR
-
       - name: Build Site
         run: |
           zola --config zola.toml build
 
-      - name: Upload artifact
+      - name: Upload Artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./public
@@ -50,3 +46,4 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
