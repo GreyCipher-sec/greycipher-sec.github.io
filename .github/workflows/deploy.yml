@@ -25,6 +25,12 @@ jobs:
         run: |
           sudo snap install zola --edge
 
+      - name: Fix Theme Structure for CI
+        run: |
+          rm -rf themes/NOIR
+          mkdir -p themes
+        git clone https://github.com/GreyCipher-sec/NOIR.git themes/NOIR
+
       - name: Build Site
         run: |
           zola --config zola.toml build
