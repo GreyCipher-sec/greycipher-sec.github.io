@@ -1,6 +1,6 @@
-base_url = "https://www.greycipher.dev"
+base_url = "https://greycipher.dev/"
 title = "GreyCipher"
-description = "Independent research archive. Systems, security, hardware."
+description = "A personal archive of code, systems, security, and things worth investigating."
 default_language = "en"
 theme = "NOIR"
 
@@ -36,3 +36,82 @@ render = false
 [extra]
 author = "GreyCipher"
 social_image = "images/social-preview.png"
+
+# PGP
+# Shown on the About page if pgp_fingerpint is set. pgp_key_url should
+# point at your exported public key (e.g. a file under static/, or an
+# external keyserver URL). Export a key with:
+# 	gpg --armor --export you@example.com > static/pgp-key.asc
+# pgp_fingerprint = "AAAA BBBB CCCC DDDD EEEE  FFFF 0000 1111 2222 3333"
+# pgp_key_url = "/pgp-key.asc"
+
+# Crypto donations
+# One entry per coin you want to accept. Add, remove or reorder freely;
+# the About page renders exactly the list below, in this order.
+# `icon` is a slug matching a file in iconpack/crypto/<slug>.svg, see
+# that folder for the bundled set or iconpack/README.md for how to add
+# one that isn't bundled. Omit `icon` entirely for a generic coin glyph;
+# if you set it, it must match an existing file, an unknown slug fails
+# the build with a clear "doesn't exist" error rather than failing silently.
+#[[extra.donations]]
+#coin = "BTC"
+#address = "1234567890"
+#icon = "bitcoin"
+
+#[[extra.donations]]
+#coin = "XMR"
+#address = "1234567890"
+#icon = "monero"
+
+# Social
+# One entry per channel. `url` is what the link points to; `value` is
+# the human-readable text shown (handle, address, etc.), often the
+# same as the visible part of `url`, but kept separate so e.g. an email
+# mailto: link can show just the address. `icon` is a slug matching
+# iconpack/social/<slug>.svg or iconpack/generic/<slug>.svg (mail, key,
+# link), omit `icon` entirely for a generic link glyph; if you set it,
+# it must match an existing file or the build fails with a clear error.
+[[extra.socials]]
+label = "GitHub"
+value = "@GreyCipher-sec"
+url = "https://github.com/GreyCipher-sec"
+icon = "github"
+
+# webring
+# Shown in the footer on every page as "← prev · ring name · next →",
+# computed from your position in the list below, nothing to keep in
+# sync by hand when the ring grows or reorders.
+#
+# `enabled = false` hides the widget entirely while keeping everything
+# below intactm, handy while you're waiting to confirm the other side
+# of a reciprocal link actually went live, without having to delete or
+# comment out the list. Omit `enabled` (or set it true) to show it.
+#
+# `name`/`url` here describe the ring itself (optional, `url` usually
+# points at the ring's own homepage/member directory, if it has one).
+# `sites` is the full membership list IN RING ORDER, including your own
+# entry, mark exactly one of them `current = true` so the template
+# knows where "you" are and can compute your neighbors. A ring needs at
+# least 2 sites to have a previous/next; with 0 or 1 the block doesn't
+# render at all, so it's safe to leave this out entirely if you're not
+# in a webring.
+#
+# Static sites can't do the classic "random member" redirect without a
+# server or JavaScript, so this only renders prev/next, not random.
+[extra.webring]
+enabled = false
+name = "Example Webring"
+url = "https://example-webring.example/"
+
+[[extra.webring.sites]]
+name = "alice's blog"
+url = "https://alice.example"
+
+[[extra.webring.sites]]
+name = "This site"
+url = "https://example.com"
+current = true
+
+[[extra.webring.sites]]
+name = "bob's blog"
+url = "https://bob.example"
