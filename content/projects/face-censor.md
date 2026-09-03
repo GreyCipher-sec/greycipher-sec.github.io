@@ -283,4 +283,4 @@ The complete project is available on GitHub:
 
 **GreyCipher / FaceCensor**
 
-https://github.com/GreyCipher-sec/FaceCensor
+[github.com/Greycipher-sec/FaceCensor](https://github.com/GreyCipher-sec/FaceCensor)
