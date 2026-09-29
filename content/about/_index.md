@@ -12,9 +12,12 @@ Hello people, **GreyCipher** here.
 
 I'm interested in understanding things.
 
-Mostly computers, systems, security and privacy, with the occasional rabbit hole that starts with a simple question and ends somewhere completely unexpected.
+Mostly computers, systems, security and privacy, with the occasional rabbit
+hole that starts with a simple question and ends somewhere completely unexpected.
 
-This is a record of things I'm learning, building and trying to understand. Some are polished, others are simply notes left behind so I can find my way back to them later.
+This is a record of things I'm learning, building and trying to understand.
+Some are polished, others are simply notes left behind so I can find my way
+back to them later.
 
 This is just a place to learn, experiment and keep things worth remembering.
 

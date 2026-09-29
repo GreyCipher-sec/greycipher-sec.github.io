@@ -7,25 +7,32 @@ description = "A local command-line tool for automatically detecting and censori
 tags = ["python", "opencv", "computer-vision", "privacy", "cli", "automation"]
 +++
 
-**Face Censor** is a small command-line tool for automatically detecting and censoring faces in images, videos, and live webcam feeds.
+**Face Censor** is a small command-line tool for automatically detecting and
+censoring faces in images, videos, and live webcam feeds.
 
-It was built around a simple problem: screenshots, recordings, dashcam footage, and other material often contain people who were never meant to become part of the final publication.
+It was built around a simple problem: screenshots, recordings, dashcam
+footage, and other material often contain people who were never meant to
+become part of the final publication.
 
 Manually removing every face is tedious. Doing it frame by frame in a video is worse.
 
-Face Censor handles the process locally, from the terminal, without sending frames to an external service.
+Face Censor handles the process locally, from the terminal, without sending
+frames to an external service.
 
 ## What it does
 
-The tool detects faces and applies a configurable censorship effect to every detected region.
+The tool detects faces and applies a configurable censorship effect to every
+detected region.
 
 Three effects are currently available:
 
 - **Blur**: Gaussian blur applied to the detected region.
-- **Pixelate**: reduces the region to a small pixel grid before scaling it back up.
+- **Pixelate**: reduces the region to a small pixel grid before scaling it back
+up.
 - **Blackbox**: completely covers the detected region with a solid black rectangle.
 
-Each detection receives a small padding margin so that the censorship extends beyond the exact bounding box returned by the detector.
+Each detection receives a small padding margin so that the censorship extends
+beyond the exact bounding box returned by the detector.
 
 The tool can operate on:
 
@@ -33,11 +40,13 @@ The tool can operate on:
 - video files
 - live webcam feeds
 
-Webcam mode also allows the censorship effect to be changed while the camera is running.
+Webcam mode also allows the censorship effect to be changed while the camera is
+running.
 
 ## Detection
 
-Face detection is handled primarily by OpenCV's DNN implementation using the **ResNet-10 SSD face detector**.
+Face detection is handled primarily by OpenCV's DNN implementation using the
+**ResNet-10 SSD face detector**.
 
 For each frame, the detector:
 
@@ -50,17 +59,22 @@ For each frame, the detector:
 
 The default confidence threshold is `0.5`.
 
-When the DNN model is unavailable, Face Censor falls back to OpenCV's Haar Cascade detector. This keeps the tool usable without the neural-network model, although detection quality is significantly lower, particularly for angled faces and difficult lighting conditions.
+When the DNN model is unavailable, Face Censor falls back to OpenCV's Haar
+Cascade detector. This keeps the tool usable without the neural-network model,
+although detection quality is significantly lower, particularly for angled faces
+and difficult lighting conditions.
 
 ## Local by design
 
 The entire processing pipeline runs locally.
 
-There are no API calls involved in detecting or censoring faces, and the input material does not need to leave the machine.
+There are no API calls involved in detecting or censoring faces, and the input
+material does not need to leave the machine.
 
 The DNN model is downloaded once during setup and can then be used completely offline.
 
-This makes the tool particularly useful for footage or screenshots that should not be uploaded to a third-party service simply to remove identifying information.
+This makes the tool particularly useful for footage or screenshots that should
+not be uploaded to a third-party service simply to remove identifying information.
 
 ## Installation
 
@@ -74,7 +88,7 @@ pip install -r requirements.txt
 
 The DNN models can then be downloaded with:
 
-```console
+```bash
 [greycipher@remnant ~]$ python3 main.py --download-models
 Downloading deploy.prototxt...
 Saved -> models/deploy.prototxt
@@ -83,13 +97,14 @@ Saved -> models/res10_300x300_ssd_iter_140000.caffemodel
 Done.
 ```
 
-If the models are not available, the program automatically falls back to Haar Cascade detection.
+If the models are not available, the program automatically falls back to Haar
+Cascade detection.
 
 ## Usage
 
 ### Image
 
-```console
+```bash
 [greycipher@remnant ~]$ python3 main.py --input photo.jpg --effect blur
 [INFO] Using OpenCV DNN face detector (ResNet SSD)
 [OK] 3 face(s) censored -> photo_censored.jpg
@@ -97,7 +112,7 @@ If the models are not available, the program automatically falls back to Haar Ca
 
 An output path can also be specified:
 
-```console
+```bash
 [greycipher@remnant ~]$ python3 main.py -i photo.jpg -o result.jpg -e pixelate
 ```
 
@@ -107,7 +122,7 @@ Supported image formats include:
 
 ### Video
 
-```console
+```bash
 [greycipher@remnant ~]$ python3 main.py --input video.mp4 --effect blackbox
 [INFO] Processing 1800 frames at 30.0 fps...
 [OK] Done -> video_censored.mp4
@@ -115,7 +130,9 @@ Supported image formats include:
 
 The original resolution and frame rate are preserved.
 
-The current implementation writes video using the `mp4v` codec. Audio is not copied to the resulting file, so it can be restored afterwards with FFmpeg if required.
+The current implementation writes video using the `mp4v` codec. Audio is not
+copied to the resulting file, so it can be restored afterwards with FFmpeg if
+required.
 
 ```bash
 ffmpeg -i video_censored.mp4 \
@@ -128,7 +145,7 @@ ffmpeg -i video_censored.mp4 \
 
 ### Webcam
 
-```console
+```bash
 [greycipher@remnant ~]$ python3 main.py --webcam --effect blur
 ```
 
@@ -159,9 +176,13 @@ If real faces are being missed, lower it:
 python3 main.py -i video.mp4 -e blur --confidence 0.2
 ```
 
-Lower thresholds make the detector more permissive, but also increase the probability of false positives.
+Lower thresholds make the detector more permissive, but also increase the
+probability of false positives.
 
-If faces are still being missed at lower thresholds, the detector itself may be the limiting factor. The Haar Cascade fallback is considerably less capable than the DNN detector, especially with partially occluded or non-frontal faces.
+If faces are still being missed at lower thresholds, the detector itself
+may be the limiting factor. The Haar Cascade fallback is considerably less
+capable than the DNN detector, especially with partially occluded or non-frontal
+faces.
 
 ## The core
 
@@ -201,9 +222,11 @@ def detect_faces_dnn(net, frame, confidence_threshold=0.5):
     return faces
 ```
 
-The detector returns bounding boxes. The censorship layer then expands each box slightly and applies the selected effect.
+The detector returns bounding boxes. The censorship layer then expands each box
+slightly and applies the selected effect.
 
-Keeping detection and censorship separate also makes it possible to experiment with different detectors without rewriting the rest of the processing pipeline.
+Keeping detection and censorship separate also makes it possible to experiment
+with different detectors without rewriting the rest of the processing pipeline.
 
 ## Limitations
 
@@ -218,7 +241,10 @@ Face Censor is deliberately small, and the underlying detector has limitations.
 
 That last point matters.
 
-Automated face censorship should be treated as an aid, not as proof that footage is completely anonymised. Faces outside the detector's capabilities can remain untouched, and other identifying information, license plates, names, screens, distinctive objects, voices, is outside the scope of the current implementation.
+Automated face censorship should be treated as an aid, not as proof that footage
+is completely anonymised. Faces outside the detector's capabilities can remain
+untouched, and other identifying information, license plates, names, screens,
+distinctive objects, voices, is outside the scope of the current implementation.
 
 ## CLI
 
@@ -275,12 +301,11 @@ There are a few obvious directions for future versions:
 
 The goal is not to turn Face Censor into a large computer-vision framework.
 
-It is a small Unix-style tool that does one job, locally, and can be dropped into a larger workflow.
+It is a small Unix-style tool that does one job, locally, and can be dropped into
+a larger workflow.
 
 ## Source
 
 The complete project is available on GitHub:
-
-**GreyCipher / FaceCensor**
 
 [github.com/Greycipher-sec/FaceCensor](https://github.com/GreyCipher-sec/FaceCensor)
