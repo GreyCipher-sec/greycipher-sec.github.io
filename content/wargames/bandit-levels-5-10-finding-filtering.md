@@ -10,8 +10,6 @@ collection = ["otw-bandit"]
 collection_part = 2
 +++
 
-<!-- markdownlint-disable MD024 -->
-
 ## Introduction
 
 Levels 5 through 10 shift the focus from simply reading files to finding them.

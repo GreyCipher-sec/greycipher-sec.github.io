@@ -1,7 +1,7 @@
 +++
 title = "OverTheWire - Bandit"
 date = 2026-08-30
-updated = 2026-09-29
+updated = 2026-10-03
 description = "OverTheWire Bandit writeups covering Linux, command-line tools, security concepts, and the reasoning behind each challenge and solution."
 
 [extra]

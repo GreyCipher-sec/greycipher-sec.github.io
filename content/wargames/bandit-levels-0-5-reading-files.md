@@ -10,8 +10,6 @@ collection = ["otw-bandit"]
 collection_part = 1
 +++
 
-<!-- markdownlint-disable MD024 -->
-
 ## Introduction
 
 If you're just getting started with Linux, cybersecurity or Capture The Flag
