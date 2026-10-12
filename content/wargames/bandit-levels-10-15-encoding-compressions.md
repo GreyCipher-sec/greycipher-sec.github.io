@@ -13,7 +13,7 @@ collection_part = 3
 ## Introduction
 
 Levels 10 through 15 introduce encoding schemes and data manipulation.
-You will decode base64, reverse ROT13 cipher, peel back multiple layers of
+We will decode base64, reverse ROT13 cipher, peel back multiple layers of
 compression, authenticate with an SSH key instead of a password and send data
 directly to a network port. These are all skills that appear regularly in
 malware analysis and incident response.

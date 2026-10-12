@@ -1,12 +1,12 @@
 +++
 title = "OverTheWire - Bandit"
 date = 2026-08-30
-updated = 2026-10-03
+updated = 2026-10-12
 description = "OverTheWire Bandit writeups covering Linux, command-line tools, security concepts, and the reasoning behind each challenge and solution."
 
 [extra]
-collection_type = "series"
 status = "active"
+collection_type = "series"
 +++
 
 Notes and solutions from my journey through OverTheWire's Bandit wargame.
