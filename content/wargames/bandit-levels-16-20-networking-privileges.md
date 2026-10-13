@@ -59,4 +59,151 @@ vs SSL/TLS, is the same difference between HTTP and HTTPS.
 
 ### Level 16 -> 17
 
-### WIP
+#### Level Goal
+
+> Submit the current password to a port in the range 31000-32000 on localhost.
+> Only one port speaks SSL/TLS and will return credentials. The others echo back
+> whatever you send.
+
+#### Solution
+
+```bash
+[greycipher@remnant ~]$ ssh bandit16@bandit.labs.overthewire.org -p 2220
+```
+
+First scan the port range to find open ports:
+
+```bash
+bandit16@bandit:~$ nmap -sV localhost -p 31000-32000
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2026-03-22 15:32 UTC
+Nmap scan report for localhost (127.0.0.1)
+Host is up (0.00016s latency).
+Not shown: 996 closed tcp ports (conn-refused)
+PORT      STATE SERVICE     VERSION
+31046/tcp open  echo
+31518/tcp open  ssl/echo
+31691/tcp open  echo
+31790/tcp open  ssl/unknown
+31960/tcp open  echo
+```
+
+Port 31790 speaks SSL and is not an echo service, that is the target:
+
+```bash
+bandit16@bandit:~$ openssl s_client -connect localhost:31790
+[TLS handshake output...]
+---
+[REDACTED]
+Correct!
+-----BEGIN RSA PRIVATE KEY-----
+[REDACTED PRIVATE KEY]
+-----END RSA PRIVATE KEY-----
+```
+
+Save the key and use it to connect as bandit17:
+
+```bash
+[greycipher@remnant ~]$ chmod 600 key
+[greycipher@remnant ~]$ ssh -i key bandit17@bandit.labs.overthewire.org -p 2220
+```
+
+#### Notes
+
+- `nmap -sV` detects service versions, not just open ports, curcial for
+distinguishing SSL from plain TCP services.
+- SSH private key files must have permission `600` (owner read/write only). SSH
+will refuse to use a key file with looser permissions.
+- This level mirrors a real enumeration workflow: san -> identify -> interesting
+service -> interact -> extract credentials.
+
+---
+
+### Level 17 -> 18
+
+#### Level Goal
+
+> There are two files: **password.old** and **password.new**. The password is
+> the only line that changed between them.
+
+#### Solution
+
+```bash
+[greycipher@remnant ~]$ ssh bandit17@bandit.labs.overthewire.org -p 2220
+```
+
+```bash
+bandit17@bandit:~$ diff passwords.old passwords.new
+42c42
+< [OLD LINE]
+---
+> [REDACTED]
+```
+
+#### Notes
+
+`diff` compares two files line by line and shows what changed. The `<` symbol
+marks lines from the first file, `>` marks lines from the second. In this output
+`42c42` means line 42 was changed, the `>` line is the new password. `diff` is
+a standard tool for change detection, log comparison and config auditing.
+
+---
+
+### Level 18 -> 19
+
+#### Level Goal
+
+> The password is stored in a file called **readme** in the home directory.
+> Someone modified **.bashrc** to log you out immediately on SSH login.
+
+#### Solution
+
+Since `.bashrc` runs on interactive login and immediately exits, pass the
+command directly to SSH instead of opening a shell:
+
+```bash
+[greycipher@remnant ~]$ ssh bandit18@bandit.labs.overthewire.org -p 2220 cat readme
+[REDACTED]
+```
+
+#### Notes
+
+SSH accepts a command as a trailing argument and executes it on the remote host
+without spawning an interactive shell, which means `.bashrc` never runs. This
+technique is useful any time a shell is restricted or modified. In incident
+response, a tampered `.bashrc` or `.bash_profile` is a common persistence
+mechanism worth checking when investigating a compromised account.
+
+---
+
+### Level 19 -> 20
+
+#### Level Goal
+
+> Use the setuid binary in the home directory to read the password from
+> **/etc/bandit_pass/bandit20**.
+
+#### Solution
+
+```bash
+[greycipher@remnant ~]$ ssh bandit19@bandit.labs.overthewire.org -p 2220
+```
+
+```bash
+bandit19@bandit:~$ ls -la
+-rwsr-x--- 1 bandit20 bandit19 ... bandit20-do
+
+bandit19@bandit:~$ ./bandit20-do
+Run a command as another user.
+Example: ./bandit20-do id
+
+bandit19@bandit:~$ ./bandit20-do cat /etc/bandit_pass/bandit20
+[REDACTED]
+```
+
+#### Notes
+
+The `s` in `-rwsr-x---` is the setuid bit. When set on an executable, it runs
+with the permission of the file owner rather than the user who executes it.
+Here `bandit-20-do` is owned by `bandit20`, so any major attack surface in Linux
+privileges escalation, finding unexpected ones with `find / -perm -4000 2>/dev/null`
+is a standard step in any privilege escalation checklist.

@@ -77,6 +77,12 @@ value = "@GreyCipher-sec"
 url = "https://github.com/GreyCipher-sec"
 icon = "github"
 
+[[extra.socials]]
+label = "WeChall"
+value = "@GreyCipher"
+url = "https://www.wechall.net/profile/GreyCipher"
+icon = "link"
+
 # webring
 # Shown in the footer on every page as "← prev · ring name · next →",
 # computed from your position in the list below, nothing to keep in
